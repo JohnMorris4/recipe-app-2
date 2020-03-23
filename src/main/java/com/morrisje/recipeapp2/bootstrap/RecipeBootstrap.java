@@ -4,6 +4,7 @@ import com.morrisje.recipeapp2.domain.*;
 import com.morrisje.recipeapp2.repositories.CategoryRepository;
 import com.morrisje.recipeapp2.repositories.RecipeRepository;
 import com.morrisje.recipeapp2.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -21,19 +23,20 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         private final RecipeRepository recipeRepository;
         private final UnitOfMeasureRepository unitOfMeasureRepository;
 
-        public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-            this.categoryRepository = categoryRepository;
-            this.recipeRepository = recipeRepository;
-            this.unitOfMeasureRepository = unitOfMeasureRepository;
-        }
+    public RecipeBootstrap(CategoryRepository categoryRepository, RecipeRepository recipeRepository,
+                           UnitOfMeasureRepository unitOfMeasureRepository) {
+        this.categoryRepository = categoryRepository;
+        this.recipeRepository = recipeRepository;
+        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    }
 
-        @Override
+    @Override
         public void onApplicationEvent(ContextRefreshedEvent event) {
             recipeRepository.saveAll(getRecipes());
+            log.debug("From the BootstrapData class");
         }
 
         private List<Recipe> getRecipes() {
-
             List<Recipe> recipes = new ArrayList<>(2);
 
             //get UOMs
