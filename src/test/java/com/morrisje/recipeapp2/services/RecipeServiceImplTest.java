@@ -19,6 +19,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 public class RecipeServiceImplTest {
+
     RecipeServiceImpl recipeService;
 
     @Mock
@@ -29,8 +30,6 @@ public class RecipeServiceImplTest {
 
     @Mock
     RecipeCommandToRecipe recipeCommandToRecipe;
-
-
 
     @Before
     public void setUp() throws Exception {
@@ -74,7 +73,6 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, never()).findAll();
     }
 
-
     @Test
     public void getRecipesTest() throws Exception {
 
@@ -82,8 +80,7 @@ public class RecipeServiceImplTest {
         HashSet receipesData = new HashSet();
         receipesData.add(recipe);
 
-        //when(recipeService.getRecipes()).thenReturn(receipesData);
-        when(recipeRepository.findAll()).thenReturn(receipesData);
+        when(recipeService.getRecipes()).thenReturn(receipesData);
 
         Set<Recipe> recipes = recipeService.getRecipes();
 
@@ -93,7 +90,8 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void testDeleteRecipeById() throws Exception {
+    public void testDeleteById() throws Exception {
+
         //given
         Long idToDelete = Long.valueOf(2L);
 
