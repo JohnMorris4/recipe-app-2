@@ -2,6 +2,7 @@ package com.morrisje.recipeapp2.controllers;
 
 import com.morrisje.recipeapp2.commands.RecipeCommand;
 import com.morrisje.recipeapp2.domain.Recipe;
+import com.morrisje.recipeapp2.exceptions.NotFoundException;
 import com.morrisje.recipeapp2.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +48,23 @@ public class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
+    }
+
+    @Test
+    public void testGetRecipeNumberFormatException()throws Exception{
+        mockMvc.perform(get("/recipe/asdf/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
     }
 
     @Test
