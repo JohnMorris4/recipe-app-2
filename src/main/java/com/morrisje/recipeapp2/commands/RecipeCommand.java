@@ -40,11 +40,11 @@ public class RecipeCommand {
     private String source;
 
     @URL
-    @NotBlank
     private String url;
 
     @NotBlank
     private String directions;
+
     private Set<IngredientCommand> ingredients = new HashSet<>();
     private Byte[] image;
     private Difficulty difficulty;

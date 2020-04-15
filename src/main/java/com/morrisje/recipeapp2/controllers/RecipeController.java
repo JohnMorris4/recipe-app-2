@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
-
 @Slf4j
 @Controller
 public class RecipeController {
