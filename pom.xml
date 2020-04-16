@@ -44,6 +44,14 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
@@ -84,13 +92,13 @@
                         <format>html</format>
                         <format>xml</format>
                     </formats>
-                    <reportSets>
-                        <reportSet>
-                            <reports>
-                                <report>cobertura</report>
-                            </reports>
-                        </reportSet>
-                    </reportSets>
+<!--                    <reportSets>-->
+<!--                        <reportSet>-->
+<!--                            <reports>-->
+<!--                                <report>cobertura</report>-->
+<!--                            </reports>-->
+<!--                        </reportSet>-->
+<!--                    </reportSets>-->
                 </configuration>
             </plugin>
         </plugins>
